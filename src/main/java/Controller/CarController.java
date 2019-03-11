@@ -2,9 +2,14 @@ package Controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,8 +30,10 @@ public class CarController extends javafx.scene.control.Tab {
             new Car("Renault","Twingo","GSJCCY0AYT",125,1995),
             new Car("Renault","Clio","EYJ2WZEHXW",1004,1992));
 
-    ListView<Car> carListView = new ListView<>(carList);
+
+    TableView table;
     HBox hb;
+    VBox vb;
     Button addButton;
     Button deleteButton;
 
@@ -42,11 +49,35 @@ public class CarController extends javafx.scene.control.Tab {
     Label millageLabel;
     Label yearOfManufactureLabel;
 
+    TableColumn storeTable;
+    TableColumn modelTable;
+    TableColumn registrationTable;
+    TableColumn millageTable;
+    TableColumn yearofManufactureTable;
+
+    private ObservableList<TableColumn> listTables = FXCollections.observableArrayList(
+            storeTable = new TableColumn("Store"),
+            modelTable = new TableColumn("Model"),
+            registrationTable = new TableColumn("Registration"),
+            millageTable = new TableColumn("Millage"),
+            yearofManufactureTable = new TableColumn("Year of Manufacture"));
+
     GridPane gp;
 
     public CarController()
     {
-        this.setText("Prize Panel");
+        this.setText("Car Panel");
+        table = new TableView();
+        vb = new VBox();
+        table.setEditable(true);
+        table.getColumns().addAll(listTables);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+
+        vb.setSpacing(5);
+        vb.setPadding(new Insets(10, 0, 0, 10));
+
+
         hb  = new HBox();
         addButton = new Button("Add\n");
         deleteButton = new Button("Delete\n");
@@ -63,29 +94,44 @@ public class CarController extends javafx.scene.control.Tab {
         millageLabel = new Label("Milleage");
         yearOfManufactureLabel = new Label("Year");
 
-        carListView.setPrefWidth(800);
-        carListView.setPrefHeight(100);
-        addButton.setOnAction(event -> addCar(carList,getUserInput()));
-        deleteButton.setOnAction(event -> deleteCar(carList,carListView.getSelectionModel().getSelectedIndex()));
         gp = new GridPane();
         gp.add(storeLabel,0,0);
-        gp.add(modelLabel,0,1);
-        gp.add(registrationLabel,0,2);
-        gp.add(millageLabel,0,3);
-        gp.add(yearOfManufactureLabel,0,4);
+        gp.add(modelLabel,1,0);
+        gp.add(registrationLabel,2,0);
+        gp.add(millageLabel,3,0);
+        gp.add(yearOfManufactureLabel,4,0);
+        gp.add(deleteButton,5,0);
 
-        gp.add(store,1,0);
+        gp.add(store,0,1);
         gp.add(model,1,1);
-        gp.add(registration,1,2);
-        gp.add(millage,1,3);
-        gp.add(yearOfManufacture,1,4);
+        gp.add(registration,2,1);
+        gp.add(millage,3,1);
+        gp.add(yearOfManufacture,4,1);
+        gp.add(addButton,5,1);
 
-        hb.getChildren().addAll(carListView,deleteButton,addButton);
         hb.getChildren().add(gp);
         hb.setSpacing(3);
 
-        this.setContent(hb);
+        storeTable.setCellValueFactory(new PropertyValueFactory<Car, String>("store"));
+        modelTable.setCellValueFactory(new PropertyValueFactory<Car, String>("model"));
+        registrationTable.setCellValueFactory(new PropertyValueFactory<Car, String>("registration"));
+        millageTable.setCellValueFactory(new PropertyValueFactory<Car, String>("millage"));
+        yearofManufactureTable.setCellValueFactory(new PropertyValueFactory<Car, String>("yearOfManufacture"));
+        table.setItems(carList);
 
+
+        addButton.setOnAction(event -> addCar(carList,getUserInput()));
+        deleteButton.setOnAction(event -> deleteCar(carList,table.getSelectionModel().getSelectedIndex()));
+
+        vb.getChildren().addAll(table,hb);
+        this.setContent(vb);
+
+    }
+
+    private <T> TableColumn<T, ?> getTableColumnByName(TableView<T> tableView, String name) {
+        for (TableColumn<T, ?> col : tableView.getColumns())
+            if (col.getText().equals(name)) return col ;
+        return null ;
     }
 
 
@@ -115,6 +161,7 @@ public class CarController extends javafx.scene.control.Tab {
 
         return userInput;
     }
+
 
 
 }

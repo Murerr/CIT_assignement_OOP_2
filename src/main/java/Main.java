@@ -29,6 +29,7 @@ public class Main extends Application {
             mainPane.prefHeightProperty().bind(scene.heightProperty());
             mainPane.prefWidthProperty().bind(scene.widthProperty());
 
+
             root.getChildren().add(mainPane);
             primaryStage.setTitle("Assignement 2 Rudy MURER R00171701");
             primaryStage.setScene(scene);
