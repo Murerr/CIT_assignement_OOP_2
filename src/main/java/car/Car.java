@@ -1,4 +1,4 @@
-package Controller;
+package car;
 
 public class Car {
 
