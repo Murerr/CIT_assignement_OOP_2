@@ -1,6 +1,6 @@
 package car;
 
-public class Car {
+public class Car implements Cloneable{
 
     private String store;
     private String model;
@@ -56,6 +56,8 @@ public class Car {
     public void setYearOfManufacture(int yearOfManufacture) {
         this.yearOfManufacture = yearOfManufacture;
     }
+
+    public Car clone() throws CloneNotSupportedException { return (Car)super.clone(); }
 
     @Override
     public String toString() {

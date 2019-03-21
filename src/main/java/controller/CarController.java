@@ -32,6 +32,8 @@ public class CarController extends javafx.scene.control.Tab {
             new Car("Renault","Clio","EYJ2WZEHXW",1004,1992));
 
 
+
+
     TableView table;
     HBox hb;
     VBox vb;
@@ -125,7 +127,9 @@ public class CarController extends javafx.scene.control.Tab {
         deleteButton.setOnAction(event -> deleteCar(carList,table.getSelectionModel().getSelectedIndex()));
 
         vb.getChildren().addAll(table,hb);
+        cloneMyCars(carList);
         this.setContent(vb);
+
 
     }
 
@@ -136,6 +140,23 @@ public class CarController extends javafx.scene.control.Tab {
     }
 
 
+
+    private void cloneMyCars(ObservableList<Car> carList) {
+        if (!carList.isEmpty()){
+             Car carToBeCloned = carList.get(0);
+             ArrayList<Car> tempList = new ArrayList<Car>();
+             for (int i=0;i<1000;i++){
+                 try {
+                     Car car = carToBeCloned.clone();
+                     tempList.add(car);
+                 } catch (CloneNotSupportedException e) {
+                     e.printStackTrace();
+                 }
+             }
+             carList.addAll(tempList);
+             System.out.println(carList.size());
+        }
+    }
 
     private void deleteCar(ObservableList<Car> carList,int carIndex) {
         carList.remove(carIndex);
