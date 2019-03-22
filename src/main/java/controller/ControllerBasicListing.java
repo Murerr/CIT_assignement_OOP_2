@@ -1,14 +1,22 @@
 package controller;
 
 import car.Car;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * Create a tab that contqin a listView of car
+ */
 public class ControllerBasicListing extends javafx.scene.control.Tab {
 
 
@@ -33,6 +41,11 @@ public class ControllerBasicListing extends javafx.scene.control.Tab {
 
     GridPane gp;
 
+    /**
+     * @param panelTitle The Title of the pqnel
+     * @param carComparator The comparator of the list how the list should be sorted
+     * @param carList The list to be displayed and sorted within the the tab
+     */
     public ControllerBasicListing(String panelTitle, Comparator<Car> carComparator, ObservableList<Car> carList)
     {
         this.setText(panelTitle);
@@ -87,10 +100,18 @@ public class ControllerBasicListing extends javafx.scene.control.Tab {
 
     }
 
+    /**
+     * @param carList The car list
+     * @param carIndex The index of the car list
+     */
     private void deleteCar(List<Car> carList, int carIndex) {
         carList.remove(carIndex);
     }
 
+    /**
+     * @param carList The car list
+     * @param userInput The Field key in by the user
+     */
     private void addCar(List<Car> carList, Map<String, String> userInput){
         carList.add(new Car(
                 userInput.get("store"),
@@ -100,6 +121,9 @@ public class ControllerBasicListing extends javafx.scene.control.Tab {
                 Integer.parseInt(userInput.get("yearOfManufacture"))));
     }
 
+    /**
+     * @return Return a String map of the user input key in in the TextField
+     */
     private Map<String, String> getUserInput(){
 
         Map<String, String> userInput = new HashMap<String, String>() {{

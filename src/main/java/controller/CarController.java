@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Create a tab containing a TableView of all car
+ */
 public class CarController extends javafx.scene.control.Tab {
 
     TableView table;
@@ -49,6 +52,10 @@ public class CarController extends javafx.scene.control.Tab {
 
     GridPane gp;
 
+    /**
+     * @param carList The car list
+     *
+     */
     public CarController(ObservableList<Car> carList)
     {
         this.setText("Car Panel");
@@ -114,6 +121,11 @@ public class CarController extends javafx.scene.control.Tab {
 
     }
 
+    /**
+     * @param carList The car list to be clone
+     * Clone the first element of the list 1000 times
+     * If the list is empty nothing happend
+     */
     private void cloneMyCars(ObservableList<Car> carList) {
         if (!carList.isEmpty()){
              Car carToBeCloned = carList.get(0);
@@ -130,6 +142,11 @@ public class CarController extends javafx.scene.control.Tab {
         }
     }
 
+    /**
+     * @param carList The car list
+     * @param carIndex The car index
+     * delete the car at the list index
+     */
     private void deleteCar(ObservableList<Car> carList,int carIndex) {
         carList.remove(carIndex);
     }
@@ -143,6 +160,9 @@ public class CarController extends javafx.scene.control.Tab {
                 Integer.parseInt(userInput.get("yearOfManufacture"))));
     }
 
+    /**
+     * @return Retrieve User input in a <String,String>Map
+     */
     private Map<String, String> getUserInput(){
 
         Map<String, String> userInput = new HashMap<String, String>() {{

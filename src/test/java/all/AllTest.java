@@ -9,6 +9,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * All tests are here
+ */
 public class AllTest {
 
     @Test

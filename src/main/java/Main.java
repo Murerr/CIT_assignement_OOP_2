@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 import java.util.Comparator;
 
 
+/**
+ * Create the GUI
+ */
 public class Main extends Application {
     private static ObservableList<Car>carList;
 
@@ -46,6 +49,9 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * @return a comparator on year of manufacture
+     */
     private Comparator<Car> getCarComparatorOrderedbyYearOfManufacture() {
         Comparator<Car> carComparator
                 = Comparator.comparing(
@@ -53,6 +59,9 @@ public class Main extends Application {
         return carComparator;
     }
 
+    /**
+     * @return a comparator on Milleage
+     */
     private Comparator<Car> getCarComparatorOrderedbyMilleage() {
         Comparator<Car> carComparator
                 = Comparator.comparing(
@@ -60,6 +69,9 @@ public class Main extends Application {
         return carComparator;
     }
 
+    /**
+     * @return a comparator on store name
+     */
     private Comparator<Car> getCarComparatorOrderedbyStore() {
         Comparator<Car> carComparator
                 = Comparator.comparing(
@@ -68,6 +80,9 @@ public class Main extends Application {
     }
 
 
+    /**
+     * @return an Observable list of Car
+     */
     private ObservableList<Car >getCarList(){
         return carList = FXCollections.observableArrayList(
                 new Car("WolkWagen","132S","XV32584F",378871,1999),

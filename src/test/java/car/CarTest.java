@@ -6,6 +6,10 @@ import static org.junit.Assert.assertEquals;
 
 public class CarTest {
 
+    /**
+     * @throws CloneNotSupportedException
+     * Is the car cloned equal to the car
+     */
     @Test
     public void isClonedCarKeepingTheSameFields() throws CloneNotSupportedException {
         Car car = new Car("WolkWagen","132S","XV32584F",378871,1999);
@@ -19,6 +23,10 @@ public class CarTest {
     }
 
 
+    /**
+     * @throws CloneNotSupportedException
+     * Test if the cloned car is equal to yearofmanufacture +1;
+     */
     @Test
     public void addOneYearOfManufactureToClonedCar() throws CloneNotSupportedException {
         Car car = new Car("WolkWagen","132S","XV32584F",378871,1999);

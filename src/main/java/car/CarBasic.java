@@ -1,11 +1,19 @@
 package car;
 
+/**
+ * Act as a super class for car
+ */
 public class CarBasic {
 
     private String store;
     private String model;
     private String registration;
 
+    /**
+     * @param store The store where the car was created
+     * @param model The model of the car
+     * @param registration The registration sign of the car
+     */
     public CarBasic(String store, String model, String registration) {
         this.store = store;
         this.model = model;
