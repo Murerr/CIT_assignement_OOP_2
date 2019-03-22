@@ -4,13 +4,11 @@ import car.Car;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -133,14 +131,6 @@ public class CarController extends javafx.scene.control.Tab {
 
     }
 
-    private <T> TableColumn<T, ?> getTableColumnByName(TableView<T> tableView, String name) {
-        for (TableColumn<T, ?> col : tableView.getColumns())
-            if (col.getText().equals(name)) return col ;
-        return null ;
-    }
-
-
-
     private void cloneMyCars(ObservableList<Car> carList) {
         if (!carList.isEmpty()){
              Car carToBeCloned = carList.get(0);
@@ -154,7 +144,6 @@ public class CarController extends javafx.scene.control.Tab {
                  }
              }
              carList.addAll(tempList);
-             System.out.println(carList.size());
         }
     }
 

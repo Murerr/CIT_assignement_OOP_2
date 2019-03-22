@@ -1,9 +1,6 @@
 import controller.CarController;
-import controller.CarController;
+import controller.ControllerSortedByDefault;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
@@ -25,6 +22,7 @@ public class Main extends Application {
 
             TabPane tp = new TabPane();
             tp.getTabs().add (new CarController());
+            tp.getTabs().add (new ControllerSortedByDefault());
 
             mainPane.setCenter(tp);
             mainPane.prefHeightProperty().bind(scene.heightProperty());

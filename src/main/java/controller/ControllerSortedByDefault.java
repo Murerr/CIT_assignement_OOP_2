@@ -1,16 +1,11 @@
 package controller;
 
-import car.*;
+import car.Car;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 
 import java.util.*;
 
@@ -52,11 +47,6 @@ public class ControllerSortedByDefault extends javafx.scene.control.Tab {
     Label millageLabel;
     Label yearOfManufactureLabel;
 
-    TableColumn storeTable;
-    TableColumn modelTable;
-    TableColumn registrationTable;
-    TableColumn millageTable;
-    TableColumn yearofManufactureTable;
 
     GridPane gp;
 
@@ -64,6 +54,13 @@ public class ControllerSortedByDefault extends javafx.scene.control.Tab {
     {
         this.setText("Prize Panel");
         this.setText("Car Panel");
+
+
+        Comparator<Car> carComparator
+                = Comparator.comparing(
+                Car::getMillage, Comparator.reverseOrder());
+
+        Collections.sort(carList, carComparator);
 
         carListView = new ListView<>(carList);
 
