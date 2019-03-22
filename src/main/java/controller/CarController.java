@@ -16,22 +16,6 @@ import java.util.Map;
 
 public class CarController extends javafx.scene.control.Tab {
 
-    private static ObservableList<Car> carList = FXCollections.observableArrayList(
-            new Car("WolkWagen","132S","XV32584F",378871,1999),
-            new Car("Peugeot","RET-75","U1HHA0EDEC",108784,1990),
-            new Car("Peugeot","TFW14","CF08YDUS2W",150000,1987),
-            new Car("Subaru","5G","GY2P76F0DF",173929,1957),
-            new Car("Ferrari","FAST-89","478UHWS70N",264433,2004),
-            new Car("WolkWagen","AR-F14","BT3L86J3V0",185858,2007),
-            new Car("Subaru","125F","0AJ79Y6DVT",94029,2001),
-            new Car("Ferrari","9F","XRO29EIQ57",527773,2008),
-            new Car("Peugeot","Lion2A","Y1F65DXI3Q",14520,2014),
-            new Car("Renault","Twingo","GSJCCY0AYT",125,1995),
-            new Car("Renault","Clio","EYJ2WZEHXW",1004,1992));
-
-
-
-
     TableView table;
     HBox hb;
     VBox vb;
@@ -65,7 +49,7 @@ public class CarController extends javafx.scene.control.Tab {
 
     GridPane gp;
 
-    public CarController()
+    public CarController(ObservableList<Car> carList)
     {
         this.setText("Car Panel");
         table = new TableView();
@@ -127,7 +111,6 @@ public class CarController extends javafx.scene.control.Tab {
         vb.getChildren().addAll(table,hb);
         cloneMyCars(carList);
         this.setContent(vb);
-
 
     }
 
