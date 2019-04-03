@@ -1,9 +1,8 @@
 package car;
-
 /**
  * A car Object
  */
-public class Car implements Cloneable{
+public class Car extends CarBasic implements Cloneable {
 
     private String store;
     private String model;
@@ -19,13 +18,10 @@ public class Car implements Cloneable{
      * @param yearOfManufacture The year the car was created
      */
     public Car(String store, String model, String registration, int millage, int yearOfManufacture) {
-        this.store = store;
-        this.model = model;
-        this.registration = registration;
+        super(store, model, registration);
         this.millage = millage;
         this.yearOfManufacture = yearOfManufacture;
     }
-
 
     public String getStore() {
         return store;
